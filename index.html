@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HeroImageHosts - File Index</title>
+    <!-- 1. Load Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- 2. Use the Inter font for a clean look -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+    </style>
+</head>
+<body class="bg-gray-900 text-gray-100 min-h-screen">
+
+    <div class="container mx-auto p-6 sm:p-10">
+
+        <!-- Header Section -->
+        <header class="text-center mb-12">
+            <h1 class="text-4xl md:text-5xl font-bold text-white mb-3">
+                HeroImageHosts File Index
+            </h1>
+            <p class="text-lg text-blue-300">
+                A simple, aesthetic gallery for your hosted files.
+            </p>
+        </header>
+
+        <!-- Gallery Grid -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+
+            <!-- 
+              HOW TO USE THIS:
+              Copy and paste the "Gallery Card" block for each image you want to add.
+              1. Update the `href` in the <a> tag to the direct link.
+              2. Update the `src` in the <img> tag to the same link.
+              3. Update the text in the <h3> tag.
+            -->
+
+            <!-- Gallery Card 1: Profile Picture -->
+            <div class="bg-gray-800 rounded-lg overflow-hidden shadow-lg transition-transform duration-300 hover:scale-105 hover:shadow-blue-500/30">
+                <!-- Image Link & Preview -->
+                <a href="Other/Profile_Picture.jpg" target="_blank">
+                    <img src="Other/Profile_Picture.jpg" 
+                         alt="Profile Picture" 
+                         class="w-full h-64 object-cover"
+                         onerror="this.src='https://placehold.co/600x400/1f2937/9ca3af?text=Image+Not+Found'">
+                </a>
+                <!-- Card Content -->
+                <div class="p-5">
+                    <h3 class="text-xl font-semibold text-white mb-2">
+                        Profile_Picture.jpg
+                    </h3>
+                    <p class="text-sm text-gray-400 mb-4">
+                        Path: <code class="bg-gray-700 p-1 rounded">Other/Profile_Picture.jpg</code>
+                    </p>
+                    <a href="Other/Profile_Picture.jpg" 
+                       target="_blank" 
+                       class="inline-block bg-blue-600 text-white font-medium px-4 py-2 rounded-md transition-colors hover:bg-blue-700">
+                        View Full Size
+                    </a>
+                </div>
+            </div>
+
+            <!-- Gallery Card 2: GIF -->
+            <div class="bg-gray-800 rounded-lg overflow-hidden shadow-lg transition-transform duration-300 hover:scale-105 hover:shadow-blue-500/30">
+                <a href="IMG_5894.gif" target="_blank">
+                    <img src="IMG_5894.gif" 
+                         alt="IMG_5894.gif" 
+                         class="w-full h-64 object-cover"
+                         onerror="this.src='https://placehold.co/600x400/1f2937/9ca3af?text=Image+Not+Found'">
+                </a>
+                <div class="p-5">
+                    <h3 class="text-xl font-semibold text-white mb-2">
+                        IMG_5894.gif
+                    </h3>
+                    <p class="text-sm text-gray-400 mb-4">
+                        Path: <code class="bg-gray-700 p-1 rounded">IMG_5894.gif</code>
+                    </p>
+                    <a href="IMG_5894.gif" 
+                       target="_blank" 
+                       class="inline-block bg-blue-600 text-white font-medium px-4 py-2 rounded-md transition-colors hover:bg-blue-700">
+                        View Full Size
+                    </a>
+                </div>
+            </div>
+
+            <!-- Gallery Card 3: WebP -->
+            <div class="bg-gray-800 rounded-lg overflow-hidden shadow-lg transition-transform duration-300 hover:scale-105 hover:shadow-blue-500/30">
+                <a href="IMG_5895.webp" target="_blank">
+                    <img src="IMG_5895.webp" 
+                         alt="IMG_5895.webp" 
+                         class="w-full h-64 object-cover"
+                         onerror="this.src='https://placehold.co/600x400/1f2937/9ca3af?text=Image+Not+Found'">
+                </a>
+                <div class="p-5">
+                    <h3 class="text-xl font-semibold text-white mb-2">
+                        IMG_5895.webp
+                    </h3>
+                    <p class="text-sm text-gray-400 mb-4">
+                        Path: <code class="bg-gray-700 p-1 rounded">IMG_5895.webp</code>
+                    </p>
+                    <a href="IMG_5895.webp" 
+                       target="_blank" 
+                       class="inline-block bg-blue-600 text-white font-medium px-4 py-2 rounded-md transition-colors hover:bg-blue-700">
+                        View Full Size
+                    </a>
+                </div>
+            </div>
+
+            <!-- Folder Card 1: SD_Actions -->
+            <div class="bg-gray-800 rounded-lg overflow-hidden shadow-lg transition-transform duration-300 hover:scale-105 hover:shadow-blue-500/30">
+                <!-- Generic Folder Icon -->
+                <div class="w-full h-64 bg-gray-700 flex items-center justify-center">
+                    <svg class="w-24 h-24 text-gray-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 12.75l19.5 0m-16.5-6.75h13.5m-13.5 0L6 3m-3.75 3l-1.5 10.5a2.25 2.25 0 002.25 2.25h15a2.25 2.25 0 002.25-2.25l-1.5-10.5a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25z" />
+                    </svg>
+                </div>
+                <div class="p-5">
+                    <h3 class="text-xl font-semibold text-white mb-2">
+                        SD_Actions/
+                    </h3>
+                    <p class="text-sm text-gray-400 mb-4">
+                        This is a folder. Links to GitHub.
+                    </p>
+                    <a href="https://github.com/HeroVibes/HeroImageHosts/tree/main/SD_Actions" 
+                       target="_blank" 
+                       class="inline-block bg-gray-600 text-white font-medium px-4 py-2 rounded-md transition-colors hover:bg-gray-700">
+                        Browse on GitHub
+                    </a>
+                </div>
+            </div>
+
+            <!-- Add more cards here as you add more files! -->
+
+        </div>
+
+        <!-- Footer -->
+        <footer class="text-center mt-16 text-gray-500">
+            <p>Hosted with <a href="https://pages.github.com/" class="underline hover:text-gray-400">GitHub Pages</a>.</p>
+        </footer>
+
+    </div>
+
+</body>
+</html>
