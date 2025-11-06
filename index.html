@@ -4,147 +4,397 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HeroImageHosts - File Index</title>
-    <!-- 1. Load Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- 2. Use the Inter font for a clean look -->
+    
+    <!-- Load the Google Font -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+
+    <!-- 
+      This <style> block contains all the custom styling
+      based on your design system.
+    -->
     <style>
-        body {
-            font-family: 'Inter', sans-serif;
+        /* Define your design system colors as CSS variables */
+        :root {
+            --color-primary-bg: #191919;
+            --color-secondary-bg: #1F1F1F;
+            --color-hover: #323232;
+            --color-outline: #323232;
+            --color-accent: #87A9FF;
+            --color-text-primary: #D4D4D4;
+            --color-text-secondary: #8C8C8C;
+
+            --font-header: 700 20px 'Inter', sans-serif;
+            --font-title: 14px 'Inter', sans-serif;
+            --font-text: 12px 'Inter', sans-serif;
         }
+
+        /* General page setup */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--color-primary-bg);
+            color: var(--color-text-primary);
+            font-family: 'Inter', sans-serif;
+            min-height: 100vh;
+            padding: 24px 16px; /* Default padding */
+        }
+
+        /* Main container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Header styling */
+        header {
+            text-align: center;
+            margin-bottom: 32px;
+        }
+
+        header h1 {
+            font: var(--font-header);
+            margin-bottom: 8px;
+        }
+
+        header p {
+            font: var(--font-text);
+            color: var(--color-text-secondary);
+        }
+
+        /* Grid for cards */
+        .file-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 16px;
+        }
+
+        /* Card styling */
+        .card {
+            background-color: var(--color-secondary-bg);
+            border: 1px solid var(--color-outline);
+            border-radius: 8px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            transition: background-color 0.2s;
+        }
+
+        .card:hover {
+            background-color: var(--color-hover);
+        }
+
+        /* Card image/icon preview area */
+        .card-preview {
+            height: 200px;
+            background-color: var(--color-primary-bg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .card-preview img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .card-preview .folder-icon {
+            width: 80px;
+            height: 80px;
+            color: var(--color-text-secondary);
+        }
+
+        /* Card content area */
+        .card-content {
+            padding: 16px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card-content h3 {
+            font: var(--font-title);
+            color: var(--color-text-primary);
+            margin-bottom: 6px;
+            /* Allow long filenames to break */
+            word-break: break-all;
+        }
+
+        .card-content .file-path {
+            font: var(--font-text);
+            color: var(--color-text-secondary);
+            margin-bottom: 16px;
+            word-break: break-all;
+            flex-grow: 1;
+        }
+
+        /* Button container */
+        .card-buttons {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+        }
+
+        .card-buttons .btn-full {
+            grid-column: 1 / -1; /* Make button span full width */
+        }
+
+        /* Button styling */
+        .btn {
+            font: var(--font-text);
+            font-weight: 700;
+            text-decoration: none;
+            text-align: center;
+            padding: 10px;
+            border-radius: 6px;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.2s, opacity 0.2s;
+        }
+
+        .btn-primary {
+            background-color: var(--color-accent);
+            color: var(--color-primary-bg);
+        }
+
+        .btn-primary:hover {
+            opacity: 0.8;
+        }
+
+        .btn-secondary {
+            background-color: var(--color-outline);
+            color: var(--color-text-primary);
+        }
+
+        .btn-secondary:hover {
+            background-color: var(--color-hover);
+        }
+        
+        .btn-copied {
+            background-color: #28a745; /* A green "copied" color */
+            color: white;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            margin-top: 32px;
+            font: var(--font-text);
+            color: var(--color-text-secondary);
+        }
+
+        footer a {
+            color: var(--color-accent);
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
     </style>
 </head>
-<body class="bg-gray-900 text-gray-100 min-h-screen">
+<body>
 
-    <div class="container mx-auto p-6 sm:p-10">
+    <div class="container">
 
-        <!-- Header Section -->
-        <header class="text-center mb-12">
-            <h1 class="text-4xl md:text-5xl font-bold text-white mb-3">
-                HeroImageHosts File Index
-            </h1>
-            <p class="text-lg text-blue-300">
-                A simple, aesthetic gallery for your hosted files.
-            </p>
+        <header>
+            <h1>HeroImageHosts File Index</h1>
+            <p>A static file index for the HeroImageHosts repository.</p>
         </header>
 
-        <!-- Gallery Grid -->
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+        <main>
+            <div class="file-grid">
 
-            <!-- 
-              HOW TO USE THIS:
-              Copy and paste the "Gallery Card" block for each image you want to add.
-              1. Update the `href` in the <a> tag to the direct link.
-              2. Update the `src` in the <img> tag to the same link.
-              3. Update the text in the <h3> tag.
-            -->
-
-            <!-- Gallery Card 1: Profile Picture -->
-            <div class="bg-gray-800 rounded-lg overflow-hidden shadow-lg transition-transform duration-300 hover:scale-105 hover:shadow-blue-500/30">
-                <!-- Image Link & Preview -->
-                <a href="Other/Profile_Picture.jpg" target="_blank">
-                    <img src="Other/Profile_Picture.jpg" 
-                         alt="Profile Picture" 
-                         class="w-full h-64 object-cover"
-                         onerror="this.src='https://placehold.co/600x400/1f2937/9ca3af?text=Image+Not+Found'">
-                </a>
-                <!-- Card Content -->
-                <div class="p-5">
-                    <h3 class="text-xl font-semibold text-white mb-2">
-                        Profile_Picture.jpg
-                    </h3>
-                    <p class="text-sm text-gray-400 mb-4">
-                        Path: <code class="bg-gray-700 p-1 rounded">Other/Profile_Picture.jpg</code>
-                    </p>
-                    <a href="Other/Profile_Picture.jpg" 
-                       target="_blank" 
-                       class="inline-block bg-blue-600 text-white font-medium px-4 py-2 rounded-md transition-colors hover:bg-blue-700">
-                        View Full Size
-                    </a>
+                <!-- 
+                  TEMPLATE: FOLDER CARD
+                  - Copy this block to add a new folder.
+                  - Update the <h3> to the folder name.
+                  - Update the <a> href to the GitHub folder link.
+                -->
+                <div class="card">
+                    <div class="card-preview">
+                        <!-- Inline SVG for Folder Icon -->
+                        <svg class="folder-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 12.75l19.5 0m-16.5-6.75h13.5m-13.5 0L6 3m-3.75 3l-1.5 10.5a2.25 2.25 0 002.25 2.25h15a2.25 2.25 0 002.25-2.25l-1.5-10.5a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25z" />
+                        </svg>
+                    </div>
+                    <div class="card-content">
+                        <h3>SD_Actions/</h3>
+                        <p class="file-path">Folder</p>
+                        <div class="card-buttons">
+                            <a href="https://github.com/HeroVibes/HeroImageHosts/tree/main/SD_Actions" target="_blank" class="btn btn-secondary btn-full">
+                                Browse on GitHub
+                            </a>
+                        </div>
+                    </div>
                 </div>
+
+                <!-- FOLDER CARD: SD_Icon_Maker -->
+                <div class="card">
+                    <div class="card-preview">
+                        <svg class="folder-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 12.75l19.5 0m-16.5-6.75h13.5m-13.5 0L6 3m-3.75 3l-1.5 10.5a2.25 2.25 0 002.25 2.25h15a2.25 2.25 0 002.25-2.25l-1.5-10.5a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25z" />
+                        </svg>
+                    </div>
+                    <div class="card-content">
+                        <h3>SD_Icon_Maker/</h3>
+                        <p class="file-path">Folder</p>
+                        <div class="card-buttons">
+                            <a href="https://github.com/HeroVibes/HeroImageHosts/tree/main/SD_Icon_Maker" target="_blank" class="btn btn-secondary btn-full">
+                                Browse on GitHub
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- FOLDER CARD: Secret_Konami -->
+                <div class="card">
+                    <div class="card-preview">
+                        <svg class="folder-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 12.75l19.5 0m-16.5-6.75h13.5m-13.5 0L6 3m-3.75 3l-1.5 10.5a2.25 2.25 0 002.25 2.25h15a2.25 2.25 0 002.25-2.25l-1.5-10.5a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25z" />
+                        </svg>
+                    </div>
+                    <div class="card-content">
+                        <h3>Secret_Konami/</h3>
+                        <p class="file-path">Folder</p>
+                        <div class="card-buttons">
+                            <a href="https://github.com/HeroVibes/HeroImageHosts/tree/main/Secret_Konami" target="_blank" class="btn btn-secondary btn-full">
+                                Browse on GitHub
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 
+                  TEMPLATE: IMAGE CARD
+                  - Copy this block to add a new image.
+                  - Update all 3 paths.
+                  1. img src="" (relative path)
+                  2. .file-path (relative path)
+                  3. <a> href="" (relative path)
+                  4. onclick="" (FULL static URL)
+                -->
+                <div class="card">
+                    <div class="card-preview">
+                        <img src="Other/Profile_Picture.jpg" alt="Profile Picture" onerror="this.src='https://placehold.co/600x400/191919/8C8C8C?text=Image+Not+Found'">
+                    </div>
+                    <div class="card-content">
+                        <h3>Profile_Picture.jpg</h3>
+                        <p class="file-path">Other/Profile_Picture.jpg</p>
+                        <div class="card-buttons">
+                            <button class="btn btn-primary" onclick="copyToClipboard('https://herovibes.github.io/HeroImageHosts/Other/Profile_Picture.jpg', this)">
+                                Copy URL
+                            </button>
+                            <a href="Other/Profile_Picture.jpg" target="_blank" class="btn btn-secondary">
+                                View File
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- IMAGE CARD: IMG_5894.gif -->
+                <div class="card">
+                    <div class="card-preview">
+                        <img src="IMG_5894.gif" alt="IMG_5894.gif" onerror="this.src='https://placehold.co/600x400/191919/8C8C8C?text=Image+Not+Found'">
+                    </div>
+                    <div class="card-content">
+                        <h3>IMG_5894.gif</h3>
+                        <p class="file-path">IMG_5894.gif</p>
+                        <div class="card-buttons">
+                            <button class="btn btn-primary" onclick="copyToClipboard('https://herovibes.github.io/HeroImageHosts/IMG_5894.gif', this)">
+                                Copy URL
+                            </button>
+                            <a href="IMG_5894.gif" target="_blank" class="btn btn-secondary">
+                                View File
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- IMAGE CARD: IMG_5895.webp -->
+                <div class="card">
+                    <div class="card-preview">
+                        <img src="IMG_5895.webp" alt="IMG_5895.webp" onerror="this.src='https://placehold.co/600x400/191919/8C8C8C?text=Image+Not+Found'">
+                    </div>
+                    <div class="card-content">
+                        <h3>IMG_5895.webp</h3>
+                        <p class="file-path">IMG_5895.webp</p>
+                        <div class="card-buttons">
+                            <button class="btn btn-primary" onclick="copyToClipboard('https://herovibes.github.io/HeroImageHosts/IMG_5895.webp', this)">
+                                Copy URL
+                            </button>
+                            <a href="IMG_5895.webp" target="_blank" class="btn btn-secondary">
+                                View File
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
             </div>
+        </main>
 
-            <!-- Gallery Card 2: GIF -->
-            <div class="bg-gray-800 rounded-lg overflow-hidden shadow-lg transition-transform duration-300 hover:scale-105 hover:shadow-blue-500/30">
-                <a href="IMG_5894.gif" target="_blank">
-                    <img src="IMG_5894.gif" 
-                         alt="IMG_5894.gif" 
-                         class="w-full h-64 object-cover"
-                         onerror="this.src='https://placehold.co/600x400/1f2937/9ca3af?text=Image+Not+Found'">
-                </a>
-                <div class="p-5">
-                    <h3 class="text-xl font-semibold text-white mb-2">
-                        IMG_5894.gif
-                    </h3>
-                    <p class="text-sm text-gray-400 mb-4">
-                        Path: <code class="bg-gray-700 p-1 rounded">IMG_5894.gif</code>
-                    </p>
-                    <a href="IMG_5894.gif" 
-                       target="_blank" 
-                       class="inline-block bg-blue-600 text-white font-medium px-4 py-2 rounded-md transition-colors hover:bg-blue-700">
-                        View Full Size
-                    </a>
-                </div>
-            </div>
-
-            <!-- Gallery Card 3: WebP -->
-            <div class="bg-gray-800 rounded-lg overflow-hidden shadow-lg transition-transform duration-300 hover:scale-105 hover:shadow-blue-500/30">
-                <a href="IMG_5895.webp" target="_blank">
-                    <img src="IMG_5895.webp" 
-                         alt="IMG_5895.webp" 
-                         class="w-full h-64 object-cover"
-                         onerror="this.src='https://placehold.co/600x400/1f2937/9ca3af?text=Image+Not+Found'">
-                </a>
-                <div class="p-5">
-                    <h3 class="text-xl font-semibold text-white mb-2">
-                        IMG_5895.webp
-                    </h3>
-                    <p class="text-sm text-gray-400 mb-4">
-                        Path: <code class="bg-gray-700 p-1 rounded">IMG_5895.webp</code>
-                    </p>
-                    <a href="IMG_5895.webp" 
-                       target="_blank" 
-                       class="inline-block bg-blue-600 text-white font-medium px-4 py-2 rounded-md transition-colors hover:bg-blue-700">
-                        View Full Size
-                    </a>
-                </div>
-            </div>
-
-            <!-- Folder Card 1: SD_Actions -->
-            <div class="bg-gray-800 rounded-lg overflow-hidden shadow-lg transition-transform duration-300 hover:scale-105 hover:shadow-blue-500/30">
-                <!-- Generic Folder Icon -->
-                <div class="w-full h-64 bg-gray-700 flex items-center justify-center">
-                    <svg class="w-24 h-24 text-gray-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 12.75l19.5 0m-16.5-6.75h13.5m-13.5 0L6 3m-3.75 3l-1.5 10.5a2.25 2.25 0 002.25 2.25h15a2.25 2.25 0 002.25-2.25l-1.5-10.5a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25z" />
-                    </svg>
-                </div>
-                <div class="p-5">
-                    <h3 class="text-xl font-semibold text-white mb-2">
-                        SD_Actions/
-                    </h3>
-                    <p class="text-sm text-gray-400 mb-4">
-                        This is a folder. Links to GitHub.
-                    </p>
-                    <a href="https://github.com/HeroVibes/HeroImageHosts/tree/main/SD_Actions" 
-                       target="_blank" 
-                       class="inline-block bg-gray-600 text-white font-medium px-4 py-2 rounded-md transition-colors hover:bg-gray-700">
-                        Browse on GitHub
-                    </a>
-                </div>
-            </div>
-
-            <!-- Add more cards here as you add more files! -->
-
-        </div>
-
-        <!-- Footer -->
-        <footer class="text-center mt-16 text-gray-500">
-            <p>Hosted with <a href="https://pages.github.com/" class="underline hover:text-gray-400">GitHub Pages</a>.</p>
+        <footer>
+            <p>Hosted with <a href="https://pages.github.com/" target="_blank">GitHub Pages</a>.</p>
         </footer>
 
     </div>
+
+    <!-- 
+      JavaScript for "Copy to Clipboard" functionality.
+      It's placed at the bottom of the body so the page loads first.
+    -->
+    <script>
+        function copyToClipboard(text, buttonElement) {
+            // Create a temporary textarea element to hold the text
+            const textarea = document.createElement('textarea');
+            textarea.value = text;
+            
+            // Make it invisible and append it to the body
+            textarea.style.position = 'fixed';
+            textarea.style.opacity = 0;
+            document.body.appendChild(textarea);
+            
+            // Select and copy the text
+            textarea.select();
+            try {
+                document.execCommand('copy');
+                
+                // --- Visual Feedback ---
+                // Store original text
+                const originalText = buttonElement.innerHTML;
+                
+                // Change button text and style
+                buttonElement.innerHTML = 'Copied!';
+                buttonElement.classList.add('btn-copied');
+                
+                // Revert after 2 seconds (2000 milliseconds)
+                setTimeout(() => {
+                    buttonElement.innerHTML = originalText;
+                    buttonElement.classList.remove('btn-copied');
+                }, 2000);
+
+            } catch (err) {
+                console.error('Failed to copy text: ', err);
+                // Optionally alert the user, though alerts are generally avoided
+                // In a real app, you'd use a prettier modal or toast notification
+                buttonElement.innerHTML = 'Error!';
+                setTimeout(() => {
+                    buttonElement.innerHTML = 'Copy URL';
+                }, 2000);
+            }
+            
+            // Clean up and remove the temporary textarea
+            document.body.removeChild(textarea);
+        }
+    </script>
 
 </body>
 </html>
